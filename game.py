@@ -13,10 +13,8 @@ try:
     underline = "\u001b[4m"
     orange = "\u001b[202m"
 
-
     def clear():
         os.system("clear")
-
 
     def main():
         clear()
@@ -92,8 +90,6 @@ try:
                     else:
                         sys.stdout.write(word_list[word] + " ")
                         sys.stdout.flush()
-
-
 
                 user_input = input("\n\n> ")
 
