@@ -18,8 +18,7 @@ try:
 
     def main():
         clear()
-        print(green + "Loading words...")
-        print("This may take a while depending on the size of the text file" + reset)
+        print(green + "Loading words...\n" + red + "This may take a while" + reset)
 
         # Read words.txt file and choose words
         word_list = []
@@ -105,24 +104,24 @@ try:
                     current_word += 1
 
             else:
-                clear()
-                print(underline + red + "Game Lost!" + reset)
-                print("\nCorrect Words: " + str(completed_words))
-                print("Failed Words: " + str(failed_words))
-                print()
-
-                print(red + "\n-----------------------------------------" + reset)
-                retry = input("Continue? [Y/N] > ")
-
-                if retry == "y" or retry == "Y":
-                    main()
-                    break
-
-                else:
+                while True:
                     clear()
-                    break
+                    print(underline + red + "Game Lost!" + reset)
+                    print("\nCorrect Words: " + str(completed_words))
+                    print("Failed Words: " + str(failed_words))
+                    print()
 
-                main()
+                    print(red + "\n-----------------------------------------" + reset)
+                    retry = input("Continue? [Y/N] > ")
+
+                    if retry == "y" or retry == "Y":
+                        main()
+                        break
+
+                    elif retry == "n" or retry == "N":
+                        clear()
+                        exit()
+                        break
 
     main()
 
