@@ -207,6 +207,7 @@ try:
 
 except(FileNotFoundError):
     clear()
-    print(red + "Language not found!" + reset + "\nmake sure you only type the abbreviation of the language")
-    input("\nPress " + red + "ENTER" + reset + " to continue... ")
-    start()
+
+    print(green + underline + "TYPING GAME\n" + reset)
+    print(red + "ERROR!\n" + reset)
+    raise FileNotFoundError(green + underline + 'Language not found!\n' + reset) from None
