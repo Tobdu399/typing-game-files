@@ -1,6 +1,8 @@
 try:
     import random
+    import time
     import os
+    import os.path
     import sys
     from langdetect import detect
 
@@ -13,11 +15,66 @@ try:
     underline = "\u001b[4m"
     orange = "\u001b[202m"
 
+    lang_select = ""
+
     def clear():
         os.system("clear")
 
-    def main():
+    def start():
         clear()
+        print(green + "Preparing... Please wait" + reset)
+
+        path = os.getcwd() + "/"
+        lang_list = []
+        language = ""
+
+        if os.path.isfile(path + "words.txt"):
+            file = open("words.txt", "r")
+            file.readlines()
+            file.seek(0)
+
+            lines = 0
+
+            for line in file:
+                lines += 1
+
+            for i in range(2000, 2050):
+                word = random.randint(1, lines)
+
+                for position, line in enumerate(file):
+                    if position == word:
+                        lang_list.append(line.strip("\n"))
+
+                file.seek(0)
+
+            file.close()
+
+            detectlanguage = lang_list[0] + " " + lang_list[0] + " " + lang_list[5] + " " + lang_list[10] + " " + lang_list[15]
+            language = detect(detectlanguage)
+
+
+        clear()
+        print(green + "Available languages: fi fr sv")
+        lang_select = input(reset + "Choose Language > ")
+
+        print(red + "\n-----------------------------------------\n" + reset)
+
+        if lang_select == language:
+            main()
+
+        else:
+            if os.path.isfile(path + "words.txt"):
+                os.system("mv words.txt words\(" + language + "\).txt")
+                os.system("mv words\(" + language + "\).txt " + path + "Languages/")
+
+            os.system("mv " + path + "Languages/words\(" + lang_select + "\).txt " + path)
+            os.system("mv " + path + "words\(" + lang_select + "\).txt words.txt")
+
+            main()
+
+
+
+    def main():
         print(green + "Loading words...\n" + red + "This may take a while" + reset)
 
         # Read words.txt file and choose words
@@ -123,11 +180,11 @@ try:
                         exit()
                         break
 
-    main()
+
+    start()
 
 except(FileNotFoundError):
     clear()
-    print(red + "Error!" + reset + " words.txt file does not exist")
-    print("\nMake sure that your word file name is 'words.txt' and it is\nin the same directory as this Python file (game.py)")
-    print("\nIf you have lost your words.txt file, you can get new one in here:")
-    print(green + "https://github.com/tobdu399/typing-game-files/\n" + reset)
+    print(red + "Language not found!" + reset + "\nmake sure you only type the abbreviation of the language")
+    input("\nPress " + red + "ENTER" + reset + " to continue... ")
+    start()
