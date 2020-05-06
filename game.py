@@ -54,8 +54,28 @@ try:
 
 
         clear()
-        print(green + "Available languages: fi fr sv")
-        lang_select = input(reset + "Choose Language > ")
+
+
+        print(green + underline + "TYPING GAME\n" + reset)
+
+
+        # List all available languages
+        print("Current language: " + green + language)
+        
+        sys.stdout.write(reset + "Other languages: " + green)
+        for fname in os.listdir("Languages/."):
+            remove_chars = ["words", "(", ")"]
+
+            filename, extension = fname.split(".")
+            
+            for char in remove_chars:
+                filename = filename.replace(char, "")
+
+            sys.stdout.write(filename + " ")
+
+
+
+        lang_select = input(green + "\n\nChoose language > " + reset)
 
         print(red + "\n-----------------------------------------\n" + reset)
 
@@ -166,9 +186,10 @@ try:
                     print(underline + red + "Game Lost!" + reset)
                     print("\nCorrect Words: " + str(completed_words))
                     print("Failed Words: " + str(failed_words))
+                    print("\nC/F = " + str(completed_words / failed_words))
                     print()
 
-                    print(red + "\n-----------------------------------------" + reset)
+                    print(red + "-----------------------------------------" + reset)
                     retry = input("Continue? [Y/N] > ")
 
                     if retry == "y" or retry == "Y":
