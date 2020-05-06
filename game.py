@@ -172,6 +172,7 @@ try:
                     retry = input("Continue? [Y/N] > ")
 
                     if retry == "y" or retry == "Y":
+                        clear()
                         main()
                         break
 
