@@ -61,13 +61,13 @@ try:
 
         # List all available languages
         print("Current language: " + green + language)
-        
+
         sys.stdout.write(reset + "Other languages: " + green)
         for fname in os.listdir("Languages/."):
             remove_chars = ["words", "(", ")"]
 
             filename, extension = fname.split(".")
-            
+
             for char in remove_chars:
                 filename = filename.replace(char, "")
 
@@ -146,7 +146,7 @@ try:
                 print()
 
                 sys.stdout.write("Health: ")
-                
+
                 for healthlost in health_lost:
                     sys.stdout.write(red_bg + red + healthlost + reset)
 
@@ -172,7 +172,7 @@ try:
                 if user_input == word_list[current_word]:
                     completed_words += 1
                     word_list.remove(word_list[current_word])
-                
+
                 else:
                     failed_words += 1
                     failed_wordlist.append(current_word)
