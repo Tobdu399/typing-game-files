@@ -75,7 +75,6 @@ try:
             sys.stdout.write(filename + " ")
 
 
-
         lang_select = input(green + "\n\nChoose language > " + reset)
 
         if lang_select == language:
@@ -92,7 +91,6 @@ try:
             main()
 
 
-
     def main():
         # Read words.txt file and choose words
         word_list = []
@@ -106,7 +104,6 @@ try:
 
         for line in file:
             lines += 1
-
 
 
         # Choose 500 words from the text file
@@ -127,7 +124,6 @@ try:
         file.close()
 
 
-
         # Make a sentance of the words to detect the language easier
         detectlanguage = word_list[0] + " " + word_list[10] + " " + word_list[100]
 
@@ -141,8 +137,6 @@ try:
         current_word = 0
         completed_words = 0
         failed_words = 0
-
-
 
 
         # Game loop
@@ -214,7 +208,6 @@ try:
 
 
     start()
-
 
 
 except(FileNotFoundError):
