@@ -22,7 +22,8 @@ try:
 
     def start():
         clear()
-        print(green + "Preparing... Please wait" + reset)
+        print(green + underline + "TYPING GAME\n" + reset)
+        print(red + "Preparing..." + reset)
 
         path = os.getcwd() + "/"
         lang_list = []
@@ -31,8 +32,8 @@ try:
         if os.path.isfile(path + "words.txt"):
             file = open("words.txt", "r")
             file.readlines()
-            file.seek(0)
 
+            file.seek(0)
             lines = 0
 
             for line in file:
@@ -49,7 +50,7 @@ try:
 
             file.close()
 
-            detectlanguage = lang_list[0] + " " + lang_list[0] + " " + lang_list[5] + " " + lang_list[10] + " " + lang_list[15]
+            detectlanguage = lang_list[0] + " " + lang_list[5] + " " + lang_list[10] + " " + lang_list[15] + " " + lang_list[20]
             language = detect(detectlanguage)
 
 
@@ -77,8 +78,6 @@ try:
 
         lang_select = input(green + "\n\nChoose language > " + reset)
 
-        print(red + "\n-----------------------------------------\n" + reset)
-
         if lang_select == language:
             main()
 
@@ -95,31 +94,39 @@ try:
 
 
     def main():
-        print(green + "Loading words...\n" + red + "This may take a while" + reset)
-
         # Read words.txt file and choose words
         word_list = []
         failed_wordlist = []
 
         file = open("words.txt", "r")
         file.readlines()
-        file.seek(0)
 
+        file.seek(0)
         lines = 0
 
         for line in file:
             lines += 1
 
+
+
         # Choose 500 words from the text file
-        for i in range(0, 500):
+        for i in range(500):
+            loadingstat = str(len(word_list) / 5) + "%"
+            clear()
+
+            print(green + underline + "TYPING GAME\n" + reset)
+            print(red + "Loading... " + reset + loadingstat)
+
+            file.seek(0)
             word = random.randint(1, lines)
 
             for position, line in enumerate(file):
                 if position == word:
                     word_list.append(line.strip("\n"))
 
-            file.seek(0)
         file.close()
+
+
 
         # Make a sentance of the words to detect the language easier
         detectlanguage = word_list[0] + " " + word_list[10] + " " + word_list[100]
@@ -134,6 +141,9 @@ try:
         current_word = 0
         completed_words = 0
         failed_words = 0
+
+
+
 
         # Game loop
         while True:
@@ -205,9 +215,14 @@ try:
 
     start()
 
+
+
 except(FileNotFoundError):
     clear()
 
+    errormsg = green + underline + 'Language not found!\n' + reset
+
     print(green + underline + "TYPING GAME\n" + reset)
     print(red + "ERROR!\n" + reset)
-    raise FileNotFoundError(green + underline + 'Language not found!\n' + reset) from None
+
+    raise FileNotFoundError(errormsg) from None
