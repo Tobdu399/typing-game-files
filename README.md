@@ -6,7 +6,9 @@ Languages:
 - Swedish
 - French
 
-When you open this program, it asks for language. Just choose yours and play. This program uses automatic language detection wich always may not be correct, so if this program throws and error while you are trying to select your language, check that your language file exists in the Languages folder and it has correct abbreviation in it.
+# This game may have some difficulties on low-end computers while loading words due to the size of the text files!
+
+When you open this program, it asks for language; just choose yours and play. This program uses automatic language detection wich always may not be correct, so if this program throws and error while you are trying to select your language, check that your language file exists in the Languages folder and it has correct abbreviation in it.
 
 If you face any problems, feel free to contact me: --> topias.j.m@gmail.com
 
