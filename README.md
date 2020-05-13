@@ -5,6 +5,7 @@ Languages:
 - Finnish
 - Swedish
 - French
+- Chinese
 
 # This game may have some difficulties on low-end computers while loading words due to the size of the text files!
 
