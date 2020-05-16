@@ -1,4 +1,6 @@
 try:
+    from pygame import mixer   # Import PyGame to play music in the background
+    import playsound           # Import playsound to play the Game Over music not in the background
     import random
     import time
     import os
@@ -135,7 +137,7 @@ try:
         language = detect(detectlanguage)
 
         # Game setup
-        health = ["[][]", "[][]", "[][]", "[][]", "[][]"]
+        health = ["    ", "    ", "    ", "    ", "    "]
         health_lost = []
 
         current_word = 0
@@ -146,6 +148,10 @@ try:
 
 
         # Game loop
+        mixer.init()
+        mixer.music.load("Music/song.mp3")
+        mixer.music.play()
+                
         while True:
             if failed_words != 5:
                 clear()
@@ -187,13 +193,17 @@ try:
                     failed_words += 1
                     failed_wordlist.append(current_word)
                     health.pop(0)
-                    health_lost.append("[][]")
+                    health_lost.append("    ")
                     current_word += 1
 
             else:
+                mixer.quit()
+
                 while True:
+                    playsound.playsound("Music/gameover.mp3")
+
                     clear()
-                    print(underline + red + "Game Lost!" + reset)
+                    print(underline + red + "Game Over!" + reset)
                     print("\nCorrect Words: " + str(completed_words))
                     print("Failed Words: " + str(failed_words))
                     print("\nC/F = " + str(completed_words / failed_words))
