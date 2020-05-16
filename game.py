@@ -149,7 +149,7 @@ try:
         # Game loop
         mixer.init()
         mixer.music.load("Music/song.mp3")
-        mixer.music.play()
+        mixer.music.play(loops=-1)
                 
         while True:
             if failed_words != 5:
