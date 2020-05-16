@@ -2,7 +2,6 @@ try:
     from pygame import mixer   # Import PyGame to play music in the background
     import playsound           # Import playsound to play the Game Over music not in the background
     import random
-    import time
     import os
     import os.path
     import sys
